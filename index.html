@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>   
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bringing Data From API</title>   
+    <style>
+        body
+    {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 50vh;
+        background-color: #62cee1;
+    }
+
+    h1 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .button-container {
+            text-align: center;
+        }
+
+        .button-container button {
+            display: block;
+            margin: 10px auto;
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #20cf7d;
+            color: #1ec59b;
+            border-radius: 5px;
+            cursor: pointer;
+            
+        }
+
+        .button-container button:hover {
+            background-color: #eb51c2;
+        }
+
+    #loadButton:hover {
+        background-color: #eb51c2;
+    }
+
+    label {
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+   
+</style>
+</head>
+<body>
+     <button id="loadButton">Load Joke</button>
+    <script>
+     
+   document.getElementById("loadButton").addEventListener("click", function() {
+        fetch('https://api.chucknorris.io/jokes/random?category=food')
+ 	    .then(response=>response.json())
+        .then(json => document.getElementById("chucks").innerHTML=json.value)
+        .catch(error => console.log('unable to reach URL'+error));
+    });
+       
+
+    </script>
+    <div>
+    <h1>Bringing Data using API</h1>
+
+    <label>What's chuck doing today?</label>
+    <p id="chucks"></p>
+    
+    
+    </div>
+
+</body>
+</html>
